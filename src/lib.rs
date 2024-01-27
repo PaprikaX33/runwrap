@@ -1,14 +1,10 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+mod traits;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl<T> traits::RightNow<T> for std::option::Option<T> {
+    fn runwrap(self) -> T {
+        self.unwrap()
+    }
+    fn rexpect(self, msg: &str) -> T {
+        self.expect(msg)
     }
 }
